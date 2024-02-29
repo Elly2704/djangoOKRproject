@@ -1,6 +1,12 @@
+from django.contrib.auth import logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import generic
+
+from .forms import RegisterUserForm
 from .models import Book, Author, BookInstance, Genre
 
 
@@ -40,4 +46,19 @@ class AuthorListView(generic.ListView):
 class AuthorDetailView(generic.DetailView):
     model = Author
 
+
+class RegisterUser(generic.CreateView):
+    form_class = RegisterUserForm
+    template_name = 'registration/register.html'
+
+    def get_success_url(self):
+        return reverse_lazy('index')
+
+
+class LoginUser(LoginView):
+    form_class = AuthenticationForm
+    template_name = 'registration/login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('index')
 
