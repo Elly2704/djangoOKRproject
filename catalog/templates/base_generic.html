@@ -37,6 +37,13 @@
      <li><a href="{% url 'register' %}"><button type="submit" style = "width: 120px; height:30px;">Registration</button></a></li>
    {% endif %}
     </ul>
+
+   {% if user.is_staff %}
+   <hr>
+   <ul class="sidebar-nav">
+   <li>Staff</li>
+   <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+   {% endif %}
 {% endblock %}
         </div>
           <div class="col-sm-8">{% block content %}{% endblock %}</div>

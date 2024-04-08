@@ -1,5 +1,3 @@
-from django.contrib.auth.views import LogoutView
-from django.template.defaulttags import url
 from django.urls import path, include
 from . import views
 
@@ -17,6 +15,6 @@ urlpatterns = [
 
 urlpatterns += [
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
-
+    path('borrowed/', views.LoanedBooksAllListView.as_view(), name='all-borrowed'),  # Added for challenge
 ]
 
