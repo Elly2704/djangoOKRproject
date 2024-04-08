@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h4>Login</h4>
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <h4>Please login to see this page.</h4>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+{% for f in form %}
+        <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+</table>
+
+<input type="submit" value="Login" style = "width: 120px; height:30px;">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+
+<p><a href="{% url 'password_reset' %} ">Lost password?</a></p>
+
+{% endblock %}
