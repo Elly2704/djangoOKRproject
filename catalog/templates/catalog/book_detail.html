@@ -3,6 +3,11 @@
 {% block content %}
   <h1>Title: {{ book.title }}</h1>
 
+     {% if user.is_staff %}
+    <a href="{% url 'book-update' book.pk %}">Update book</a>
+    <a href="{% url 'book-delete' book.pk %}">Delete book</a>
+    {% endif %}
+
   <p><strong>Author:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
   <p><strong>Summary:</strong> {{ book.summary }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
