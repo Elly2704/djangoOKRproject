@@ -1,16 +1,16 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-    <h4>Renew: {{bookinst.book.title}}</h4>
-    <p>Borrower: {{bookinst.borrower}}</p>
-    <p{% if bookinst.is_overdue %} class="text-danger"{% endif %}>Due date: {{bookinst.due_back}}</p>
+    <h4>Renew: {{ bookinst.book.title }}</h4>
+    <p>Borrower: {{ bookinst.borrower }}</p>
+    <p{% if bookinst.is_overdue %} class="text-danger"{% endif %}>Due date: {{ bookinst.due_back }}</p>
 
     <form action="" method="post">
         {% csrf_token %}
         <table>
-        {{ form }}
+            {{ form }}
         </table>
-        <input type="submit" value="Submit" style = "width: 120px; height:30px;" />
+        <input type="submit" value="Submit" style="width: 120px; height:30px;"/>
     </form>
 
 {% endblock %}

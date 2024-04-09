@@ -2,24 +2,24 @@
 
 {% block content %}
 
-  <h1>Author: {{ author.first_name}} {{author.last_name }}</h1>
-    <p>{{ author.date_of_birth}} - {{author.date_of_death}}</p>
+    <h1>Author: {{ author.first_name }} {{ author.last_name }}</h1>
+    <p>{{ author.date_of_birth }} - {{ author.date_of_death }}</p>
     {% if user.is_staff %}
-    <a href="{% url 'author-update' author.pk %}">Update author</a>
-    <a href="{% url 'author-delete' author.pk %}">Delete author</a>
+        <a href="{% url 'author-update' author.pk %}">Update author</a>
+        <a href="{% url 'author-delete' author.pk %}">Delete author</a>
     {% endif %}
 
 
- <div style="margin-left:20px;margin-top:20px">
+    <div style="margin-left:20px;margin-top:20px">
 
-    <h4>Books</h4>
+        <h4>Books</h4>
 
-    {% for book in author.book_set.all %}
-    <hr>
-    <p><a href="{% url 'book-detail' book.pk %}"> {{book.title}} </a></p>
-    <p>{{book.summary}}</p>
-    <p class="text-muted"><strong>Genre:</strong> {{book.display_genre}}</p>
-    {% endfor %}
-  </div>
+        {% for book in author.book_set.all %}
+            <hr>
+            <p><a href="{% url 'book-detail' book.pk %}"> {{ book.title }} </a></p>
+            <p>{{ book.summary }}</p>
+            <p class="text-muted"><strong>Genre:</strong> {{ book.display_genre }}</p>
+        {% endfor %}
+    </div>
 {% endblock %}
 

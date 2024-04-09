@@ -3,23 +3,23 @@
 {% block title %}<title>Home page</title>{% endblock %}
 
 {% block content %}
-<h1>Local Library</h1>
+    <h1>Local Library</h1>
 
-  <p>Welcome to <em>LocalLibrary</em>. This is my first site, don't judge too harshly.</p>
+    <p>Welcome to <em>LocalLibrary</em>. This is my first site, don't judge too harshly.</p>
 
-<h2> Сontent of our library </h2>
+    <h2> Сontent of our library </h2>
 
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-    <li><strong>Genres:</strong> {{ num_genres }}</li>
-  </ul>
+    <p>The library has the following record counts:</p>
+    <ul>
+        <li><strong>Books:</strong> {{ num_books }}</li>
+        <li><strong>Copies:</strong> {{ num_instances }}</li>
+        <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+        <li><strong>Authors:</strong> {{ num_authors }}</li>
+        <li><strong>Genres:</strong> {{ num_genres }}</li>
+    </ul>
 
     <p>
-        You have visited this page {{ num_visits }}{% if num_visits == 1 %} time {%else %} times{% endif %}.
+        You have visited this page {{ num_visits }}{% if num_visits == 1 %} time {% else %} times{% endif %}.
     </p>
 
 {% endblock %}

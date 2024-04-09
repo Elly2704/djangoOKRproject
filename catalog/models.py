@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from datetime import date
 
 
-
 class Genre(models.Model):
     name = models.CharField(
         max_length=200,
@@ -105,7 +104,7 @@ class BookInstance(models.Model):
         permissions = (("can_mark_returned", "Set book as returned"),)
 
     def __str__(self):
-       return '%s (%s)' % (self.id, self.book.title)
+        return '%s (%s)' % (self.id, self.book.title)
 
     @property
     def is_overdue(self):
