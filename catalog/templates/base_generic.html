@@ -22,6 +22,7 @@
                     <li><a href="{% url 'index' %}">Home page</a></li>
                     <li><a href="{% url 'books' %}">All books</a></li>
                     <li><a href="{% url 'authors' %}">All authors</a></li>
+                    <li><a href="{% url 'comment' %}">Comments</a></li>
                 </ul>
                 <ul class="sidebar-nav">
                     {% if user.is_authenticated %}

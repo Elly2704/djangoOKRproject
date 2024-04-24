@@ -7,9 +7,10 @@ urlpatterns = [
     path('book-detail/<int:pk>', views.BookDetailView.as_view(), name='book-detail'),
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('author-detail/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
-    path('login/', views.LoginUser.as_view, name='login'),
+    path('login/', views.LoginUser.as_view(), name='login'),
     path('register/', views.RegisterUser.as_view(), name='register'),
-    path('book/<uuid:pk>/renew/', views.renew_book_librarian, name='renew-book-librarian')
+    path('book/<uuid:pk>/renew/', views.renew_book_librarian, name='renew-book-librarian'),
+    path('comment/', views.CommentPage.as_view(), name='comment')
 ]
 
 urlpatterns += [

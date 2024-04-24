@@ -5,9 +5,9 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, AddCommentForm
 from .models import Book, Author, BookInstance, Genre
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -158,3 +158,17 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('books')
+
+
+class CommentPage(View):
+    def get(self, request):
+        form = AddCommentForm()
+        return render(request, 'catalog/addcomment.html',{'form': form})
+
+    def post(self, request):
+        form = AddCommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+        return render(request, 'catalog/addcomment.html', {'form': form})

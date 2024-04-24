@@ -1,3 +1,5 @@
+from tokenize import Comment
+
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
@@ -33,3 +35,15 @@ class RenewBookForm(forms.Form):
 
         # Помните, что всегда надо возвращать "очищенные" данные.
         return data
+
+
+class AddCommentForm(forms.Form):
+    username = forms.CharField(label='Name', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
+    comment = forms.CharField(label='Comment', widget=forms.TextInput(attrs={'class': 'form-input'}))
+
+    class Meta:
+        fields = ('username', 'email', 'comment')
+
+    def save(self):
+        return self.cleaned_data

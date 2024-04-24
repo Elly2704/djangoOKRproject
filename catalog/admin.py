@@ -8,9 +8,11 @@ class BookInline(admin.TabularInline):
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth', 'date_of_death')
-    inlines = [BookInline]
+    inlines = [BookInline] # множественное отображение, в данном случае информация по каждому
+                           # экземпляру книги
 
 
+@admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'display_genre')
 
@@ -25,10 +27,10 @@ class BookInstanceAdmin(admin.ModelAdmin):
         ('Availability', {
             'fields': ('status', 'due_back', 'borrower')
         }),
-    )
+    ) # разделение на секции
 
 
-admin.site.register(Book, BookAdmin)
+#admin.site.register(Book, BookAdmin) - прописан через декоратор
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Genre)
 admin.site.register(BookInstance, BookInstanceAdmin)
