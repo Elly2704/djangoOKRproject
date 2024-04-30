@@ -163,10 +163,10 @@ class BookDelete(DeleteView):
 class CommentPage(View):
     def get(self, request):
         form = AddCommentForm()
-        return render(request, 'catalog/addcomment.html',{'form': form})
+        return render(request, 'catalog/addcomment.html', {'form': form})
 
     def post(self, request):
-        form = AddCommentForm(request.POST, request.FILES)
+        form = AddCommentForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('index')

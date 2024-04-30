@@ -1,11 +1,13 @@
-from tokenize import Comment
-
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 
 import datetime  # for checking renewal date range.
+
+from django.forms import ModelForm
+
+from catalog.models import Comment
 
 
 class RegisterUserForm(UserCreationForm):
@@ -37,13 +39,37 @@ class RenewBookForm(forms.Form):
         return data
 
 
-class AddCommentForm(forms.Form):
-    username = forms.CharField(label='Name', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
-    comment = forms.CharField(label='Comment', widget=forms.TextInput(attrs={'class': 'form-input'}))
+#class AddCommentForm(forms.Form):
+#   username = forms.CharField(label='Name', widget=forms.TextInput(attrs={'class': 'form-input'}))
+#   email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
+#   comment = forms.CharField(label='Comment', max_length=255, widget=forms.Textarea(attrs={'class': 'form-input'}))
 
+    #def save(self):
+    #   return self.cleaned_data
+
+
+class AddCommentForm(ModelForm):
     class Meta:
-        fields = ('username', 'email', 'comment')
+        model = Comment
+        fields = ('username',
+                  'email',
+                  'comment')
 
-    def save(self):
-        return self.cleaned_data
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'form-input',
+                'placeholder': 'Name'
+            }),
+            'email': forms.TextInput(attrs={
+                'class': 'form-input',
+                'placeholder': 'Email'
+            }),
+            'comment': forms.Textarea(attrs={
+                'class': 'form-input',
+                'placeholder': 'Comment'
+            })
+        }
+
+
+
+
